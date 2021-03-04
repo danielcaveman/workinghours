@@ -1,9 +1,15 @@
 module.exports = () => {
-  const now = new Date();
+  const date = new Date();
   const data = { days: [] };
-  for (let i = new Date(2020, 0, 1); i < now; i.setDate(i.getDate() + 1)) {
+  let firstDayMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+  const lastDayMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  for (
+    firstDayMonth;
+    firstDayMonth <= lastDayMonth;
+    firstDayMonth.setDate(firstDayMonth.getDate() + 1)
+  ) {
     data.days.push({
-      id: new Date(i),
+      id: new Date(firstDayMonth),
       begin: "",
       end: "",
       lunchBegin: "",
