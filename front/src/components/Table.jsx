@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { DateService } from "../services/DateService";
+import Button from "./Button";
+import TimeInput from "./TimeInput";
 
 const TableContainer = styled.table`
   font-family: Arial, Helvetica, sans-serif;
@@ -23,33 +25,10 @@ const TableContainer = styled.table`
   }
 `;
 
-const TimeInput = styled.input`
-  border: 0;
-  outline: 0;
-  border-bottom: 2px solid;
-
-  &:focus {
-    border-bottom: 2px solid #5eabf2;
-  }
-
-  &::-webkit-calendar-picker-indicator {
-    background: none;
-    display: none;
-  }
-`;
-
-const Button = styled.button`
-  background-color: transparent;
-  margin: 0 1rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
-`;
-
 function Table() {
   const dateService = new DateService();
   const [month, setMonth] = useState(dateService.generateMonth());
-  const [days, setDays] = useState([
+  const [days] = useState([
     {
       id: "Mon Mar 08 2021 00:00:00 GMT-0300 (Horário Padrão de Brasília)",
       begin: "08:00",
@@ -93,6 +72,15 @@ function Table() {
     console.log(row);
   };
 
+  const confirm = (row) => {
+    setMonth(
+      month.map((day) => {
+        day.edit = false;
+        return day;
+      })
+    );
+  };
+
   return (
     <TableContainer>
       <thead>
@@ -117,28 +105,41 @@ function Table() {
             <tr key={index}>
               <td>{dateService.formatDate(m.id, "DD/MM/YYYY")}</td>
               <td>
-                {m.edit ? (
-                  <TimeInput type="time" id="arriving" name="arriving" />
-                ) : (
-                  m.begin
-                )}
+                {<TimeInput condition={m.edit} value={m.begin} name="begin" />}
               </td>
-              <td>{m.end}</td>
-              <td>{m.lunchBegin}</td>
-              <td>{m.lunchEnd}</td>
+              <td>
+                {<TimeInput condition={m.edit} value={m.end} name="end" />}
+              </td>
+              <td>
+                {
+                  <TimeInput
+                    condition={m.edit}
+                    value={m.begin}
+                    name="lunchBegin"
+                  />
+                }
+              </td>
+              <td>
+                {
+                  <TimeInput
+                    condition={m.edit}
+                    value={m.lunchEnd}
+                    name="lunchEnd"
+                  />
+                }
+              </td>
               <td>
                 {!m.edit ? (
-                  <Button onClick={() => editRow(m)}>
-                    <span class="material-icons">edit</span>
-                  </Button>
+                  <Button onClick={() => editRow(m)} icon="edit" />
                 ) : (
-                  <Button onClick={() => cancelEditRow(m)}>
-                    <span class="material-icons">clear</span>
-                  </Button>
+                  <Button onClick={() => cancelEditRow(m)} icon="clear" />
                 )}
-                <Button onClick={() => removeRow(m)}>
-                  <span class="material-icons">delete</span>
-                </Button>
+                <Button onClick={() => removeRow(m)} icon="delete" />
+                <Button
+                  onClick={() => confirm(m)}
+                  icon="check"
+                  disabled={!m.edit}
+                />
               </td>
             </tr>
           );
