@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import Table from "../components/Table";
+import DatePanel from "../components/DatePanel";
 import {
   getAll,
   deleteById,
@@ -18,6 +19,7 @@ function MainPage() {
 
   return (
     <Layout>
+      <DatePanel />
       <Table
         data={employeeHours.data || []}
         deleteById={(id) => dispatch(deleteById(id))}
