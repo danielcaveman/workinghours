@@ -75,9 +75,9 @@ function Table({ data, updateById, deleteById }) {
           <tr>
             <th>Date</th>
             <th>Begin</th>
-            <th>End</th>
             <th>Lunch Begin</th>
             <th>Lunch End</th>
+            <th>End</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -93,9 +93,9 @@ function Table({ data, updateById, deleteById }) {
               <tr key={index}>
                 <td>{dateService.formatDate(m.day, "DD/MM/YYYY")}</td>
                 <td>{m.begin}</td>
-                <td>{m.end}</td>
                 <td>{m.lunchBegin}</td>
                 <td>{m.lunchEnd}</td>
+                <td>{m.end}</td>
                 <td>
                   <Button onClick={() => openModal(m)} icon="edit" />
                   <Button onClick={() => deleteRow(m.id)} icon="delete" />
@@ -133,16 +133,7 @@ function Table({ data, updateById, deleteById }) {
             }, 400);
           }}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-            setFieldValue,
-          }) => (
+          {({ values, errors, handleChange, handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <ModalInputs>
                 <TimeInput
@@ -151,13 +142,6 @@ function Table({ data, updateById, deleteById }) {
                   label="Begin"
                   name="begin"
                   value={values.begin}
-                />
-                <TimeInput
-                  id="end"
-                  onChange={handleChange}
-                  label="End"
-                  name="end"
-                  value={values.end}
                 />
                 <TimeInput
                   id="lunchBegin"
@@ -172,6 +156,13 @@ function Table({ data, updateById, deleteById }) {
                   label="Lunch End"
                   name="lunchEnd"
                   value={values.lunchEnd}
+                />
+                <TimeInput
+                  id="end"
+                  onChange={handleChange}
+                  label="End"
+                  name="end"
+                  value={values.end}
                 />
                 {errors.default && <Error>{errors.default}</Error>}
               </ModalInputs>
