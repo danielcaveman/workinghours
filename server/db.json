@@ -1,15 +1,7 @@
 {
   "days": [
     {
-      "id": 1,
-      "day": "Tue Mar 09 2021 00:00:00 GMT-0300 (Horário Padrão de Brasília)",
-      "begin": "08:00",
-      "end": "18:00",
-      "lunchBegin": "12:00",
-      "lunchEnd": "13:00"
-    },
-    {
-      "id": 3,
+      "id": 2,
       "day": "Thu Mar 11 2021 00:00:00 GMT-0300 (Horário Padrão de Brasília)",
       "begin": "08:00",
       "end": "18:00",

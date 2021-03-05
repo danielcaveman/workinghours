@@ -42,6 +42,10 @@ function Table({ data, deleteById }) {
     setIsOpen(false);
   }
 
+  const deleteRow = (id) => {
+    id && deleteById(id);
+  };
+
   return (
     <>
       <TableContainer>
@@ -72,7 +76,7 @@ function Table({ data, deleteById }) {
                 <td>{m.lunchEnd}</td>
                 <td>
                   <Button onClick={() => openModal(m)} icon="edit" />
-                  <Button onClick={() => deleteById(m.id)} icon="delete" />
+                  <Button onClick={() => deleteRow(m.id)} icon="delete" />
                 </td>
               </tr>
             );
