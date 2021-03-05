@@ -21,8 +21,4 @@ export default createGlobalStyle`
         max-width: 50rem;
         margin: 30vh auto;
     }
-
-    .ReactModal__Overlay {
-        background-color: rgb(40 40 40 / 75%) !important;
-    }
 `;

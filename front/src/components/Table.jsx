@@ -1,10 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { Formik } from "formik";
 import Modal from "react-modal";
 import { DateService } from "../services/DateService";
 import Button from "./Button";
+import TimeInput from "./TimeInput";
 
 Modal.setAppElement("#root");
+Modal.defaultStyles.overlay.backgroundColor = "rgb(40 40 40 / 75%)";
 
 const TableContainer = styled.table`
   font-family: Arial, Helvetica, sans-serif;
@@ -25,6 +28,18 @@ const TableContainer = styled.table`
   tbody > tr {
     background-color: #fff;
   }
+`;
+
+const ModalInputs = styled.div`
+  margin: 2rem 0%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ModalActions = styled.div`
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
 `;
 
 function Table({ data, deleteById }) {
@@ -89,10 +104,67 @@ function Table({ data, deleteById }) {
         contentLabel="Modal"
       >
         <h2>{dateService.formatDate(rowActive.day, "DD/MM/YYYY")}</h2>
-        <form>
-          <Button onClick={closeModal} color="grey" icon="clear" />
-          <Button color="green" icon="check" />
-        </form>
+        <Formik
+          initialValues={rowActive}
+          validate={(values) => {
+            const errors = {};
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              console.log(values);
+              setSubmitting(false);
+            }, 400);
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            setFieldValue,
+          }) => (
+            <form onSubmit={handleSubmit}>
+              <ModalInputs>
+                <TimeInput
+                  id="begin"
+                  onChange={handleChange}
+                  label="Begin"
+                  name="begin"
+                  value={values.begin}
+                />
+                <TimeInput
+                  id="end"
+                  onChange={handleChange}
+                  label="End"
+                  name="end"
+                  value={values.end}
+                />
+                <TimeInput
+                  id="lunchBegin"
+                  onChange={handleChange}
+                  label="Lunch Begin"
+                  name="lunchBegin"
+                  value={values.lunchBegin}
+                />
+                <TimeInput
+                  id="lunchEnd"
+                  onChange={handleChange}
+                  label="Lunch End"
+                  name="lunchEnd"
+                  value={values.lunchEnd}
+                />
+              </ModalInputs>
+              <ModalActions>
+                <Button onClick={closeModal} color="grey" icon="clear" />
+                <Button color="green" icon="check" />
+              </ModalActions>
+            </form>
+          )}
+        </Formik>
       </Modal>
     </>
   );
