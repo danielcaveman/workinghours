@@ -16,11 +16,11 @@ const Time = styled.input`
   }
 `;
 
-function TimeInput({ condition, value, setValue, name }) {
+function TimeInput({ edit, value, setValue, name }) {
   return (
     <Time
       type="time"
-      disabled={!condition}
+      disabled={!edit}
       value={value || ""}
       onChange={(e) => setValue(e.target.value)}
       id={name}

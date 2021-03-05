@@ -6,15 +6,16 @@ const StyledButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+  color: ${(props) => (props.color ? props.color : "#333")};
 
   &:disabled {
     cursor: default;
   }
 `;
 
-function Button({ onClick, icon, disabled }) {
+function Button({ onClick, icon, disabled, color }) {
   return (
-    <StyledButton disabled={disabled} onClick={onClick}>
+    <StyledButton color={color} disabled={disabled} onClick={onClick}>
       <span className="material-icons">{icon}</span>
     </StyledButton>
   );

@@ -6,6 +6,7 @@ import { getAll } from "../actions/EmployeesHours.actions";
 
 function MainPage() {
   const dispatch = useDispatch();
+  const employeeHours = useSelector((state) => state.employeeHours);
 
   useEffect(() => {
     dispatch(getAll());
@@ -13,7 +14,7 @@ function MainPage() {
 
   return (
     <Layout>
-      <Table />
+      <Table data={employeeHours.data || []} />
     </Layout>
   );
 }
