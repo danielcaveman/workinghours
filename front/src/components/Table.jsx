@@ -38,6 +38,14 @@ const TimeInput = styled.input`
   }
 `;
 
+const Button = styled.button`
+  background-color: transparent;
+  margin: 0 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
+
 function Table() {
   const dateService = new DateService();
   const [month, setMonth] = useState(dateService.generateMonth());
@@ -72,7 +80,15 @@ function Table() {
     );
   };
 
-  console.log(month);
+  const cancelEditRow = () => {
+    setMonth(
+      month.map((day) => {
+        day.edit = false;
+        return day;
+      })
+    );
+  };
+
   const removeRow = (row) => {
     console.log(row);
   };
@@ -102,13 +118,7 @@ function Table() {
               <td>{dateService.formatDate(m.id, "DD/MM/YYYY")}</td>
               <td>
                 {m.edit ? (
-                  <TimeInput
-                    type="time"
-                    id="arriving"
-                    name="arriving"
-                    min="09:00"
-                    max="18:00"
-                  />
+                  <TimeInput type="time" id="arriving" name="arriving" />
                 ) : (
                   m.begin
                 )}
@@ -117,8 +127,18 @@ function Table() {
               <td>{m.lunchBegin}</td>
               <td>{m.lunchEnd}</td>
               <td>
-                <button onClick={() => editRow(m)}>Edit</button>
-                <button onClick={() => removeRow(m)}>Remove</button>
+                {!m.edit ? (
+                  <Button onClick={() => editRow(m)}>
+                    <span class="material-icons">edit</span>
+                  </Button>
+                ) : (
+                  <Button onClick={() => cancelEditRow(m)}>
+                    <span class="material-icons">clear</span>
+                  </Button>
+                )}
+                <Button onClick={() => removeRow(m)}>
+                  <span class="material-icons">delete</span>
+                </Button>
               </td>
             </tr>
           );
