@@ -42,6 +42,13 @@ const ModalActions = styled.div`
   bottom: 1rem;
 `;
 
+const Error = styled.span`
+  position: absolute;
+  bottom: 2rem;
+  font-size: 1.3rem;
+  color: #b90e0a;
+`;
+
 function Table({ data, updateById, deleteById }) {
   const dateService = new DateService();
   const [month] = useState(dateService.generateMonth());
@@ -108,6 +115,14 @@ function Table({ data, updateById, deleteById }) {
           initialValues={rowActive}
           validate={(values) => {
             const errors = {};
+            if (
+              !values.begin ||
+              !values.end ||
+              !values.lunchBegin ||
+              !values.lunchEnd
+            ) {
+              errors.default = "All fields are required";
+            }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
@@ -158,6 +173,7 @@ function Table({ data, updateById, deleteById }) {
                   name="lunchEnd"
                   value={values.lunchEnd}
                 />
+                {errors.default && <Error>{errors.default}</Error>}
               </ModalInputs>
               <ModalActions>
                 <Button onClick={closeModal} color="grey" icon="clear" />

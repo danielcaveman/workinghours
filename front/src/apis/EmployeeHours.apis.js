@@ -9,7 +9,7 @@ const employeeHoursApis = {
   },
   deleteById: (id) => {
     return axios.delete(`http://localhost:3001/days/${id}`).then((response) => {
-      return response.data;
+      toastr.success("Removed");
     });
   },
   updateById: (data) => {
