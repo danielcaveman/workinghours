@@ -12,7 +12,7 @@ export class DateService {
       firstDayMonth.setDate(firstDayMonth.getDate() + 1)
     ) {
       data.push({
-        id: new Date(firstDayMonth),
+        day: new Date(firstDayMonth),
         begin: "",
         end: "",
         lunchBegin: "",

@@ -6,6 +6,11 @@ const employeeHoursApis = {
       return response.data;
     });
   },
+  deleteById: (id) => {
+    return axios.delete(`http://localhost:3001/days/${id}`).then((response) => {
+      return response.data;
+    });
+  },
 };
 
 export { employeeHoursApis };

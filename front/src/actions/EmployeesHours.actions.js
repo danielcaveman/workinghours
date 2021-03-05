@@ -5,3 +5,10 @@ export const getAll = () => {
     type: ACTIONS.EMPLOYEE_HOURS_GET_ALL,
   };
 };
+
+export const deleteById = (id) => {
+  return {
+    type: ACTIONS.EMPLOYEE_HOURS_DELETE_BY_ID,
+    id,
+  };
+};

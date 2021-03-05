@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import Table from "../components/Table";
-import { getAll } from "../actions/EmployeesHours.actions";
+import { getAll, deleteById } from "../actions/EmployeesHours.actions";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -14,7 +14,10 @@ function MainPage() {
 
   return (
     <Layout>
-      <Table data={employeeHours.data || []} />
+      <Table
+        data={employeeHours.data || []}
+        deleteById={(id) => dispatch(deleteById(id))}
+      />
     </Layout>
   );
 }
