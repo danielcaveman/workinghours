@@ -11,6 +11,17 @@ const employeeHoursApis = {
       return response.data;
     });
   },
+  updateById: (data) => {
+    data.id
+      ? axios
+          .put(`http://localhost:3001/days/${data.id}`, data)
+          .then((response) => {
+            return response.data;
+          })
+      : axios.post(`http://localhost:3001/days`, data).then((response) => {
+          return response.data;
+        });
+  },
 };
 
 export { employeeHoursApis };

@@ -24,9 +24,19 @@ function* watchRequestDeleteEmployeeHours() {
   yield takeLatest(ACTIONS.EMPLOYEE_HOURS_DELETE_BY_ID, deleteEmployeeHours);
 }
 
+function* updateEmployeeHours(action) {
+  yield call(employeeHoursApis.updateById, action.data);
+  yield getEmployeeHours();
+}
+
+function* watchRequestUpdateEmployeeHours() {
+  yield takeLatest(ACTIONS.EMPLOYEE_HOURS_UPDATE_BY_ID, updateEmployeeHours);
+}
+
 export function* employeeHoursSagas() {
   yield all([
     watchRequestGetEmployeeHours(),
     watchRequestDeleteEmployeeHours(),
+    watchRequestUpdateEmployeeHours(),
   ]);
 }

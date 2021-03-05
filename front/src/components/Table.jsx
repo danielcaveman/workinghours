@@ -42,7 +42,7 @@ const ModalActions = styled.div`
   bottom: 1rem;
 `;
 
-function Table({ data, deleteById }) {
+function Table({ data, updateById, deleteById }) {
   const dateService = new DateService();
   const [month] = useState(dateService.generateMonth());
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -77,7 +77,7 @@ function Table({ data, deleteById }) {
         <tbody>
           {month.map((m, index) => {
             data.forEach((d) => {
-              const isEqual = m.day == d.day;
+              const isEqual = m.day === d.day;
               if (isEqual) {
                 m = d;
               }
@@ -112,7 +112,7 @@ function Table({ data, deleteById }) {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              console.log(values);
+              updateById(values);
               setSubmitting(false);
             }, 400);
           }}
