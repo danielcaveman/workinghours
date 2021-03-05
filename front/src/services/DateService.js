@@ -17,7 +17,6 @@ export class DateService {
         end: "",
         lunchBegin: "",
         lunchEnd: "",
-        edit: false,
       });
     }
     return data;
