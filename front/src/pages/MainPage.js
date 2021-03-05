@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Header from "./components/Header";
-import Menu from "./components/Menu";
-import Main from "./components/Main";
-import GlobalStyles from "./styles/global";
+import Header from "../components/Header";
+import Menu from "../components/Menu";
+import Main from "../components/Main";
+import GlobalStyles from "../styles/global";
 
 const Container = styled.div`
   display: grid;
@@ -15,7 +15,7 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-function App() {
+function MainPage() {
   return (
     <>
       <GlobalStyles />
@@ -28,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainPage;
