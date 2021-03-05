@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toastr } from "react-redux-toastr";
 
 const employeeHoursApis = {
   getAll: () => {
@@ -12,14 +13,14 @@ const employeeHoursApis = {
     });
   },
   updateById: (data) => {
-    data.id
+    return data.id
       ? axios
           .put(`http://localhost:3001/days/${data.id}`, data)
           .then((response) => {
-            return response.data;
+            toastr.success("Updated");
           })
       : axios.post(`http://localhost:3001/days`, data).then((response) => {
-          return response.data;
+          toastr.success("Saved");
         });
   },
 };

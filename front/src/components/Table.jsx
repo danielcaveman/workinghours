@@ -113,6 +113,7 @@ function Table({ data, updateById, deleteById }) {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               updateById(values);
+              closeModal();
               setSubmitting(false);
             }, 400);
           }}
