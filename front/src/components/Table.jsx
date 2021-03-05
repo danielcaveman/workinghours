@@ -59,9 +59,20 @@ function Table() {
   ]);
 
   const editRow = (row) => {
-    console.log(row);
+    setMonth(
+      month.map((day) => {
+        if (day.id == row.id) {
+          row.edit = true;
+          return row;
+        } else {
+          day.edit = false;
+          return day;
+        }
+      })
+    );
   };
 
+  console.log(month);
   const removeRow = (row) => {
     console.log(row);
   };
@@ -89,7 +100,19 @@ function Table() {
           return (
             <tr key={index}>
               <td>{dateService.formatDate(m.id, "DD/MM/YYYY")}</td>
-              <td>{m.begin}</td>
+              <td>
+                {m.edit ? (
+                  <TimeInput
+                    type="time"
+                    id="arriving"
+                    name="arriving"
+                    min="09:00"
+                    max="18:00"
+                  />
+                ) : (
+                  m.begin
+                )}
+              </td>
               <td>{m.end}</td>
               <td>{m.lunchBegin}</td>
               <td>{m.lunchEnd}</td>
@@ -101,34 +124,6 @@ function Table() {
           );
         })}
       </tbody>
-      {/* <tbody>
-        <tr>
-          <td>03/03/2021</td>
-          <td>
-            <TimeInput
-              type="time"
-              id="arriving"
-              name="arriving"
-              min="09:00"
-              max="18:00"
-            />
-          </td>
-          <td>18:00</td>
-          <td>8:00h</td>
-        </tr>
-        <tr>
-          <td>04/03/2021</td>
-          <td>08:00</td>
-          <td>18:00</td>
-          <td>8:00h</td>
-        </tr>
-        <tr>
-          <td>05/03/2021</td>
-          <td>08:00</td>
-          <td>18:00</td>
-          <td>8:00h</td>
-        </tr>
-      </tbody> */}
     </TableContainer>
   );
 }
