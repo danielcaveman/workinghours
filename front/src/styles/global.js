@@ -16,4 +16,9 @@ export default createGlobalStyle`
     body {
         box-sizing: border-box;
     }
+
+    .ReactModal__Content {
+        max-width: 50rem;
+        margin: 30vh auto;
+    }
 `;
