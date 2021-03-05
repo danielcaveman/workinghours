@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Table from "../components/Table";
 
 const MainContainer = styled.main`
   grid-area: main;
@@ -8,12 +7,8 @@ const MainContainer = styled.main`
   font-size: 1.4rem;
 `;
 
-function Main() {
-  return (
-    <MainContainer>
-      <Table />
-    </MainContainer>
-  );
+function Main({ children }) {
+  return <MainContainer>{children}</MainContainer>;
 }
 
 export default Main;

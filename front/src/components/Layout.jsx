@@ -15,14 +15,14 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-function MainPage() {
+function MainPage({ children }) {
   return (
     <>
       <GlobalStyles />
       <Container>
         <Header />
         <Menu />
-        <Main />
+        <Main children={children} />
       </Container>
     </>
   );
