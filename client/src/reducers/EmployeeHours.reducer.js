@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   data: [],
 };
 
-export default (state = INITIAL_STATE, action) => {
+function EmployeeHoursReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case ACTIONS.EMPLOYEE_HOURS_SET_ALL:
       return {
@@ -14,4 +14,6 @@ export default (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-};
+}
+
+export default EmployeeHoursReducer;

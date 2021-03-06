@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 
-export default () => {
+function Routes() {
   return (
     <Router>
       <Switch>
@@ -16,4 +16,6 @@ export default () => {
       </Switch>
     </Router>
   );
-};
+}
+
+export default Routes;

@@ -20,7 +20,7 @@ const store = createStore(
 
 sagaMiddleware.run(sagas);
 
-export default (props) => {
+function Providers(props) {
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <Provider store={store}>
@@ -39,4 +39,6 @@ export default (props) => {
       </Provider>
     </MuiPickersUtilsProvider>
   );
-};
+}
+
+export default Providers;
