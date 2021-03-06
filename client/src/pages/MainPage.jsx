@@ -14,9 +14,10 @@ import TimeInput from "../components/TimeInput";
 
 function MainPage() {
   const dateService = new DateService();
-  const [month] = useState(dateService.generateMonth());
   const dispatch = useDispatch();
   const employeeHours = useSelector((state) => state.employeeHours);
+  const [month] = useState(dateService.generateMonth());
+  const [gridData, setGridData] = useState([]);
 
   useEffect(() => {
     dispatch(getAll());
@@ -42,11 +43,15 @@ function MainPage() {
     });
   };
 
+  useEffect(() => {
+    setGridData(getTableData());
+  }, [employeeHours.data]);
+
   return (
     <Layout>
       <DatePanel />
       <Table
-        data={getTableData()}
+        data={gridData}
         deleteById={(id) => dispatch(deleteById(id))}
         updateById={(data) => dispatch(updateById(data))}
         columns={[
