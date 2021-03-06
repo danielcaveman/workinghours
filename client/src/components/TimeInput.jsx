@@ -15,11 +15,6 @@ const Time = styled.input`
   outline: 0;
   border-bottom: 2px solid;
   border-bottom: 2px solid #5eabf2;
-  min-width: 8rem;
-
-  &:disabled {
-    border-bottom: 2px solid #cccccc;
-  }
 
   &::-webkit-calendar-picker-indicator {
     background: none;

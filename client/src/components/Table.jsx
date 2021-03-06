@@ -1,180 +1,92 @@
 import React from "react";
 import { useState } from "react";
-import styled from "styled-components";
-import { Formik } from "formik";
-import Modal from "react-modal";
+import MaterialTable from "material-table";
 import { DateService } from "../services/DateService";
-import Button from "./Button";
 import TimeInput from "./TimeInput";
-
-Modal.setAppElement("#root");
-Modal.defaultStyles.overlay.backgroundColor = "rgb(40 40 40 / 75%)";
-
-const TableContainer = styled.table`
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-
-  td,
-  th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-
-  thead > tr {
-    background-color: #fff;
-    text-align: left;
-  }
-
-  tbody > tr {
-    background-color: #fff;
-  }
-`;
-
-const ModalInputs = styled.div`
-  margin: 2rem 0%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const ModalActions = styled.div`
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-`;
-
-const Error = styled.span`
-  position: absolute;
-  bottom: 2rem;
-  font-size: 1.3rem;
-  color: #b90e0a;
-`;
 
 function Table({ data, updateById, deleteById }) {
   const dateService = new DateService();
   const [month] = useState(dateService.generateMonth());
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [rowActive, setRowActive] = useState({});
-
-  function openModal(row) {
-    setRowActive(row);
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   const deleteRow = (id) => {
     id && deleteById(id);
   };
 
+  const getTableData = () => {
+    return month.map((m, index) => {
+      data.forEach((d) => {
+        const isEqual = m.day === d.day;
+        if (isEqual) {
+          m = d;
+        }
+      });
+      return m;
+    });
+  };
+
+  const editComponent = (props) => (
+    <TimeInput
+      type="text"
+      value={props.value}
+      onChange={(e) => props.onChange(e.target.value)}
+    />
+  );
+
   return (
     <>
-      <TableContainer>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Begin</th>
-            <th>Lunch Begin</th>
-            <th>Lunch End</th>
-            <th>End</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {month.map((m, index) => {
-            data.forEach((d) => {
-              const isEqual = m.day === d.day;
-              if (isEqual) {
-                m = d;
-              }
-            });
-            return (
-              <tr key={index}>
-                <td>{dateService.formatDate(m.day, "DD/MM/YYYY")}</td>
-                <td>{m.begin}</td>
-                <td>{m.lunchBegin}</td>
-                <td>{m.lunchEnd}</td>
-                <td>{m.end}</td>
-                <td>
-                  <Button onClick={() => openModal(m)} icon="edit" />
-                  <Button onClick={() => deleteRow(m.id)} icon="delete" />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </TableContainer>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Modal"
-      >
-        <h2>{dateService.formatDate(rowActive.day, "DD/MM/YYYY")}</h2>
-        <Formik
-          initialValues={rowActive}
-          validate={(values) => {
-            const errors = {};
-            if (
-              !values.begin ||
-              !values.end ||
-              !values.lunchBegin ||
-              !values.lunchEnd
-            ) {
-              errors.default = "All fields are required";
-            }
-            return errors;
-          }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              updateById(values);
-              closeModal();
-              setSubmitting(false);
-            }, 400);
-          }}
-        >
-          {({ values, errors, handleChange, handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <ModalInputs>
-                <TimeInput
-                  id="begin"
-                  onChange={handleChange}
-                  label="Begin"
-                  name="begin"
-                  value={values.begin}
-                />
-                <TimeInput
-                  id="lunchBegin"
-                  onChange={handleChange}
-                  label="Lunch Begin"
-                  name="lunchBegin"
-                  value={values.lunchBegin}
-                />
-                <TimeInput
-                  id="lunchEnd"
-                  onChange={handleChange}
-                  label="Lunch End"
-                  name="lunchEnd"
-                  value={values.lunchEnd}
-                />
-                <TimeInput
-                  id="end"
-                  onChange={handleChange}
-                  label="End"
-                  name="end"
-                  value={values.end}
-                />
-                {errors.default && <Error>{errors.default}</Error>}
-              </ModalInputs>
-              <ModalActions>
-                <Button onClick={closeModal} color="grey" icon="clear" />
-                <Button color="green" icon="check" />
-              </ModalActions>
-            </form>
-          )}
-        </Formik>
-      </Modal>
+      <MaterialTable
+        options={{
+          search: false,
+          actionsColumnIndex: -1,
+        }}
+        columns={[
+          {
+            title: "Day",
+            field: "day",
+            render: (rowData) =>
+              dateService.formatDate(rowData.day, "MM/DD/YYYY"),
+            editable: "never",
+          },
+          {
+            title: "Begin",
+            field: "begin",
+            editComponent: editComponent,
+          },
+          {
+            title: "Lunch Begin",
+            field: "lunchBegin",
+            editComponent: editComponent,
+          },
+          {
+            title: "Lunch End",
+            field: "lunchEnd",
+            editComponent: editComponent,
+          },
+          {
+            title: "End",
+            field: "end",
+            editComponent: editComponent,
+          },
+        ]}
+        data={getTableData()}
+        title="Month and Year"
+        editable={{
+          onRowUpdate: (rowData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                updateById(rowData);
+                resolve();
+              }, 1000);
+            }),
+          onRowDelete: (rowData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                deleteRow(rowData.id);
+                resolve();
+              }, 1000);
+            }),
+        }}
+      />
     </>
   );
 }
