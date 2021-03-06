@@ -2,13 +2,14 @@ import React from "react";
 import { applyMiddleware, compose, createStore } from "redux";
 import { Provider } from "react-redux";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import MomentUtils from "@date-io/moment";
 import createSagaMiddleware from "redux-saga";
 import ReduxToastr from "react-redux-toastr";
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
-
 import reducers from "../reducers/index";
 import { sagas } from "../sagas/index";
+import theme from "../theme";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
@@ -35,7 +36,7 @@ function Providers(props) {
           progressBar
           closeOnToastrClick
         />
-        {props.children}
+        <MuiThemeProvider theme={theme}>{props.children}</MuiThemeProvider>
       </Provider>
     </MuiPickersUtilsProvider>
   );
