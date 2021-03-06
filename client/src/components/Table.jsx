@@ -38,6 +38,11 @@ function Table({ data, updateById, deleteById }) {
         options={{
           search: false,
           actionsColumnIndex: -1,
+          rowStyle: (x) => {
+            if (x.tableData.id % 2) {
+              return { backgroundColor: "#fafafa" };
+            }
+          },
         }}
         columns={[
           {

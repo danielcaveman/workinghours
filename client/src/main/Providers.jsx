@@ -2,7 +2,7 @@ import React from "react";
 import { applyMiddleware, compose, createStore } from "redux";
 import { Provider } from "react-redux";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import MomentUtils from "@date-io/moment";
 import createSagaMiddleware from "redux-saga";
 import ReduxToastr from "react-redux-toastr";
