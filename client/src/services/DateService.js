@@ -2,7 +2,7 @@ import moment from "moment";
 
 export class DateService {
   generateMonth(dateParameter) {
-    const date = new Date();
+    const date = dateParameter ? dateParameter : new Date();
     const data = [];
     let firstDayMonth = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDayMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);

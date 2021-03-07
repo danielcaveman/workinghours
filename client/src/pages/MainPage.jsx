@@ -16,7 +16,8 @@ function MainPage() {
   const dateService = new DateService();
   const dispatch = useDispatch();
   const employeeHours = useSelector((state) => state.employeeHours);
-  const [month] = useState(dateService.generateMonth());
+  const datePanel = useSelector((state) => state.datePanel);
+  const [month, setMonth] = useState(dateService.generateMonth());
   const [gridData, setGridData] = useState([]);
 
   useEffect(() => {
@@ -45,6 +46,10 @@ function MainPage() {
     };
     setGridData(getTableData());
   }, [employeeHours.data, month]);
+
+  useEffect(() => {
+    setMonth(dateService.generateMonth(datePanel.date));
+  }, [datePanel.date]);
 
   return (
     <Layout>
