@@ -20,6 +20,8 @@ function DatePanel() {
         label="Date"
         value={datePanel.date}
         onChange={(e) => dispatch(changeDate(e._d))}
+        minDate={new Date("1990-02-01")}
+        maxDate={new Date("2100-02-01")}
       />
     </DateContainer>
   );
