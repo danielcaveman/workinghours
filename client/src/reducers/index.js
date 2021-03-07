@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import { reducer as toastrReducer } from "react-redux-toastr";
-import employeeHoursReducer from "./EmployeeHours.reducer";
+import { reducer as ToastrReducer } from "react-redux-toastr";
+import EmployeeHoursReducer from "./EmployeeHours.reducer";
+import DatePanelReducer from "./DatePanel.reducer";
 
 const rootReducer = combineReducers({
-  toastr: toastrReducer,
-  employeeHours: employeeHoursReducer,
+  toastr: ToastrReducer,
+  employeeHours: EmployeeHoursReducer,
+  datePanel: DatePanelReducer,
 });
 
 export default rootReducer;

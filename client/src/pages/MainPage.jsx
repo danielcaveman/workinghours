@@ -31,21 +31,20 @@ function MainPage() {
     />
   );
 
-  const getTableData = () => {
-    return month.map((m, index) => {
-      employeeHours.data.forEach((d) => {
-        const isEqual = m.day === d.day;
-        if (isEqual) {
-          m = d;
-        }
-      });
-      return m;
-    });
-  };
-
   useEffect(() => {
+    const getTableData = () => {
+      return month.map((m) => {
+        employeeHours.data.forEach((d) => {
+          const isEqual = m.day === d.day;
+          if (isEqual) {
+            m = d;
+          }
+        });
+        return m;
+      });
+    };
     setGridData(getTableData());
-  }, [employeeHours.data]);
+  }, [employeeHours.data, month]);
 
   return (
     <Layout>
