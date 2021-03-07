@@ -93,7 +93,9 @@ export class DateService {
     const minutes = date % 60;
     const hours = (date - minutes) / 60 - expectedHours;
     const calculatedHours =
-      minutes.length > 1 ? `${hours}:${minutes}` : `${hours}:0${minutes}`;
+      minutes.toString().length > 1
+        ? `${hours}:${minutes}`
+        : `${hours}:0${minutes}`;
     return calculatedHours;
   }
 }
