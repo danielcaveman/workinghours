@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 
-function Table({ data, updateById, deleteById, columns, title }) {
+function Table({ data, updateById, deleteById, columns, title, subTitle }) {
   return (
     <MaterialTable
       options={{
@@ -15,7 +15,7 @@ function Table({ data, updateById, deleteById, columns, title }) {
       }}
       columns={columns}
       data={data}
-      title={title}
+      title={`${title}: ${subTitle}`}
       editable={{
         onRowUpdate: (rowData) =>
           new Promise((resolve, reject) => {
