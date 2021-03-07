@@ -13,9 +13,10 @@ export const deleteById = (id) => {
   };
 };
 
-export const updateById = (data) => {
+export const updateById = (data, expectedHours) => {
   return {
     type: ACTIONS.EMPLOYEE_HOURS_UPDATE_BY_ID,
     data,
+    expectedHours,
   };
 };

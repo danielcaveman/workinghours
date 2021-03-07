@@ -13,9 +13,9 @@ const employeeHoursApis = {
       toastr.success("Removed");
     });
   },
-  updateById: (data) => {
+  updateById: (data, expectedHours) => {
     const dateService = new DateService();
-    data.total = dateService.calculateTotal(data);
+    data.total = dateService.calculateTotal(data, expectedHours);
     return data.id
       ? axios
           .put(`http://localhost:3001/days/${data.id}`, data)

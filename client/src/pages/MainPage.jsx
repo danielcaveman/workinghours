@@ -19,6 +19,7 @@ function MainPage() {
   const datePanel = useSelector((state) => state.datePanel);
   const [month, setMonth] = useState(dateService.generateMonth());
   const [gridData, setGridData] = useState([]);
+  const [expectedHours] = useState(8);
 
   useEffect(() => {
     dispatch(getAll());
@@ -57,7 +58,7 @@ function MainPage() {
       <Table
         data={gridData}
         deleteById={(id) => dispatch(deleteById(id))}
-        updateById={(data) => dispatch(updateById(data))}
+        updateById={(data) => dispatch(updateById(data, expectedHours))}
         columns={[
           {
             title: "Day",
@@ -93,7 +94,7 @@ function MainPage() {
           },
         ]}
         title={dateService.formatDate(datePanel.date, "MMMM YYYY")}
-        subTitle={`Expected working hours - 8 hours`}
+        subTitle={`Expected working hours - ${8} hours`}
       />
     </Layout>
   );

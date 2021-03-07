@@ -29,7 +29,7 @@ export class DateService {
     return moment(dateUTC).format(format);
   }
 
-  calculateTotal(data) {
+  calculateTotal(data, expectedHours) {
     const { begin, end, lunchBegin, lunchEnd } = data;
 
     if (!begin || !end || !lunchBegin || !lunchEnd) {
@@ -53,13 +53,20 @@ export class DateService {
       beginDate,
       endDate,
       lunchBeginDate,
-      lunchEndDate
+      lunchEndDate,
+      expectedHours
     );
 
     return beginEndDiff;
   }
 
-  _calculateDateDiff(beginDate, endDate, lunchBeginDate, lunchEndDate) {
+  _calculateDateDiff(
+    beginDate,
+    endDate,
+    lunchBeginDate,
+    lunchEndDate,
+    expectedHours
+  ) {
     let workingHours = "";
     if (lunchBeginDate > lunchEndDate) {
       toastr.error(
@@ -74,17 +81,19 @@ export class DateService {
     const lunchHours = Math.abs(lunchBeginDate - lunchEndDate);
     const hours = Math.abs(beginDate - endDate);
     workingHours = hours - lunchHours;
-    workingHours = this._millisecondsToTime(workingHours);
+    workingHours = this._millisecondsToTime(workingHours, expectedHours);
     return workingHours;
   }
 
-  _millisecondsToTime(date) {
+  _millisecondsToTime(date, expectedHours) {
     const milliseconds = date % 1000;
     date = (date - milliseconds) / 1000;
     const seconds = date % 60;
     date = (date - seconds) / 60;
     const minutes = date % 60;
-    const hours = (date - minutes) / 60;
-    return hours + ":" + minutes;
+    const hours = (date - minutes) / 60 - expectedHours;
+    const calculatedHours =
+      minutes.length > 1 ? `${hours}:${minutes}` : `${hours}:0${minutes}`;
+    return calculatedHours;
   }
 }
