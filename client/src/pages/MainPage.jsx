@@ -86,6 +86,11 @@ function MainPage() {
             field: "end",
             editComponent: editComponent,
           },
+          {
+            title: "Total",
+            field: "total",
+            editable: "never",
+          },
         ]}
         title="Month and Year"
       />
