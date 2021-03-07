@@ -88,7 +88,7 @@ function MainPage() {
             editComponent: editComponent,
           },
           {
-            title: "Total",
+            title: "Balance",
             field: "total",
             editable: "never",
           },
