@@ -59,7 +59,7 @@ export class DateService {
     return beginEndDiff;
   }
 
-  _calculateDateDiff(firstDate, secondDate, lunchBeginDate, lunchEndDate) {
+  _calculateDateDiff(beginDate, endDate, lunchBeginDate, lunchEndDate) {
     let workingHours = "";
     if (lunchBeginDate > lunchEndDate) {
       toastr.error(
@@ -68,11 +68,23 @@ export class DateService {
       );
       return "";
     }
-    if (firstDate > secondDate) {
-      secondDate.setDate(secondDate.getDate() + 1);
+    if (beginDate > endDate) {
+      endDate.setDate(endDate.getDate() + 1);
     }
-    const hours = Math.abs(firstDate - secondDate) / 36e5;
-    workingHours = hours.toFixed(2);
+    const lunchHours = Math.abs(lunchBeginDate - lunchEndDate);
+    const hours = Math.abs(beginDate - endDate);
+    workingHours = hours - lunchHours;
+    workingHours = this._millisecondsToTime(workingHours);
     return workingHours;
+  }
+
+  _millisecondsToTime(date) {
+    const milliseconds = date % 1000;
+    date = (date - milliseconds) / 1000;
+    const seconds = date % 60;
+    date = (date - seconds) / 60;
+    const minutes = date % 60;
+    const hours = (date - minutes) / 60;
+    return hours + ":" + minutes;
   }
 }
