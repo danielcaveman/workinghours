@@ -24,7 +24,7 @@ function* watchRequestDeleteEmployeeHours() {
   yield takeLatest(ACTIONS.EMPLOYEE_HOURS_DELETE_BY_ID, deleteEmployeeHours);
 }
 
-function* updateEmployeeHours(action) {
+export function* updateEmployeeHours(action) {
   yield call(employeeHoursApis.updateById, action.data, action.expectedHours);
   yield getEmployeeHours();
 }

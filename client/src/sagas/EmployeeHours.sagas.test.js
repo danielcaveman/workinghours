@@ -1,6 +1,10 @@
 import regeneratorRuntime from "regenerator-runtime";
 import { put, call } from "redux-saga/effects";
-import { getEmployeeHours, deleteEmployeeHours } from "./EmployeeHours.sagas";
+import {
+  getEmployeeHours,
+  deleteEmployeeHours,
+  updateEmployeeHours,
+} from "./EmployeeHours.sagas";
 import { employeeHoursApis } from "../apis/EmployeeHours.apis";
 
 describe("Should test EmployeeHours Sagas functions", () => {
@@ -23,10 +27,40 @@ describe("Should test EmployeeHours Sagas functions", () => {
     );
   });
 
-  it("Should load the employees hours and handle them in case of success:", () => {
+  it("Should delete the employees hours and handle them in case of success:", () => {
     const generator = deleteEmployeeHours({ id: "2" });
     expect(generator.next().value).toEqual(
       call(employeeHoursApis.deleteById, "2")
+    );
+  });
+
+  it("Should update the employees hours and handle them in case of success:", () => {
+    const generator = updateEmployeeHours({
+      data: {
+        day: "2021-03-01T03:00:00.000Z",
+        begin: "08:15",
+        end: "17:12",
+        lunchBegin: "12:00",
+        lunchEnd: "13:00",
+        total: "-1:57",
+        id: 11,
+      },
+      expectedHours: 8,
+    });
+    expect(generator.next().value).toEqual(
+      call(
+        employeeHoursApis.updateById,
+        {
+          day: "2021-03-01T03:00:00.000Z",
+          begin: "08:15",
+          end: "17:12",
+          lunchBegin: "12:00",
+          lunchEnd: "13:00",
+          total: "-1:57",
+          id: 11,
+        },
+        8
+      )
     );
   });
 });
