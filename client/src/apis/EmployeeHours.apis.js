@@ -3,16 +3,14 @@ import { toastr } from "react-redux-toastr";
 import { DateService } from "../services/DateService";
 
 const employeeHoursApis = {
-  getAll: () => {
-    return axios.get("http://localhost:3001/days").then((response) => {
+  getAll: async () =>
+    axios.get("http://localhost:3001/days").then((response) => {
       return response.data;
-    });
-  },
-  deleteById: (id) => {
-    return axios.delete(`http://localhost:3001/days/${id}`).then((response) => {
+    }),
+  deleteById: (id) =>
+    axios.delete(`http://localhost:3001/days/${id}`).then((response) => {
       toastr.success("Removed");
-    });
-  },
+    }),
   updateById: (data, expectedHours) => {
     const dateService = new DateService();
     data.total = dateService.calculateTotal(data, expectedHours);
