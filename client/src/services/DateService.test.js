@@ -6,6 +6,7 @@ describe("Should test DateService Class", () => {
     const mockedDate = "2021-03-01T03:00:00.000Z";
     const expectedFormatDefault = "03/01/2021";
     const expectedFormatMonthYear = "March 2021";
+    const expectedNoValueResponse = "Invalid Date";
 
     expect(dateService.formatDate(mockedDate, "MM/DD/YYYY")).toEqual(
       expectedFormatDefault
@@ -16,5 +17,7 @@ describe("Should test DateService Class", () => {
     );
 
     expect(dateService.formatDate(mockedDate)).toEqual(expectedFormatDefault);
+
+    expect(dateService.formatDate()).toEqual(expectedNoValueResponse);
   });
 });

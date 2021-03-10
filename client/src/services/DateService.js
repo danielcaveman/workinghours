@@ -25,8 +25,10 @@ export class DateService {
   }
 
   formatDate(value, format) {
+    if (!value) return "Invalid Date";
+    const dateFormat = format ? format : "MM/DD/YYYY";
     const dateUTC = moment.utc(value);
-    return moment(dateUTC).format(format ? format : "MM/DD/YYYY");
+    return moment(dateUTC).format(dateFormat);
   }
 
   calculateTotal(data, expectedHours) {
