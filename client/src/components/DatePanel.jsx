@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { DatePicker } from "@material-ui/pickers";
-import { Paper } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { changeDate } from "../actions/DatePanel.actions";
 
 const DateContainer = styled(Paper)`
@@ -15,6 +15,9 @@ function DatePanel() {
   const dispatch = useDispatch();
   return (
     <DateContainer>
+      <Typography variant="h6" gutterBottom>
+        Choose a Date:
+      </Typography>
       <DatePicker
         views={["year", "month"]}
         label="Date"

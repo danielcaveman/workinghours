@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Table from "./Table";
 
-const mock = {
+const props = {
   data: [],
   columns: [],
   title: "title 1",
@@ -12,7 +12,8 @@ const mock = {
 };
 
 describe("<Table />", () => {
-  it("Should render table component", () => {
-    render(<Table {...mock} />);
+  it("Should render table component correctly", () => {
+    const { debug } = render(<Table {...props} />);
+    // debug();
   });
 });
