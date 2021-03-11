@@ -7,7 +7,7 @@ import {
 } from "./EmployeeHours.sagas";
 import { employeeHoursApis } from "../apis/EmployeeHours.apis";
 
-describe("Should test EmployeeHours Sagas functions", () => {
+describe("EmployeeHoursSagas", () => {
   it("Should load the employees hours and handle them in case of success:", () => {
     const mockedHour = [
       {
