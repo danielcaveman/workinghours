@@ -29,7 +29,7 @@ function TimeInput({ value, onChange, name, label }) {
       <Time
         type="time"
         onChange={onChange}
-        value={value || ""}
+        value={value}
         id={name}
         name={name}
       />
