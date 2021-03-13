@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toastr } from "react-redux-toastr";
-import { DateService } from "../services/DateService";
 
 const employeeHoursApis = {
   getAll: async () =>
@@ -14,8 +13,6 @@ const employeeHoursApis = {
         toastr.success("Removed");
       }),
   updateById: (data, expectedHours) => {
-    const dateService = new DateService();
-    data.total = dateService.calculateTotal(data, expectedHours);
     return data._id
       ? axios
           .put(`http://localhost:3001/api/employeeHours/${data._id}`, data)

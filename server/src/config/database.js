@@ -6,6 +6,4 @@ const dbConn =
     ? "mongodb://localhost/employeeHours"
     : "mongodb://mongodb:27017/employeeHours";
 
-module.exports = mongoose.connect(dbConn, {
-  useMongoClient: true,
-});
+module.exports = mongoose.connect(dbConn, { useNewUrlParser: true });
