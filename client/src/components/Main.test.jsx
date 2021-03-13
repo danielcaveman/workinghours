@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import Main from "./Main";
 
 describe("<Main />", () => {
-  it("Should render main component", () => {
+  it("Should render main component correctly", () => {
     render(<Main />);
     const main = screen.getByRole("main");
 

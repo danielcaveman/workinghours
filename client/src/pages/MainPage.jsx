@@ -27,8 +27,8 @@ function MainPage() {
 
   const editComponent = (props) => (
     <TimeInput
-      type="text"
-      value={props.value}
+      label="time"
+      inputValue={props.value}
       onChange={(e) => props.onChange(e.target.value)}
     />
   );

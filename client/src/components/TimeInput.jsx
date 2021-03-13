@@ -1,15 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const TimeInputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  font-size: 1.5rem;
-`;
-
 const Time = styled.input`
   border: 0;
   outline: 0;
@@ -22,18 +13,14 @@ const Time = styled.input`
   }
 `;
 
-function TimeInput({ value, onChange, name, label }) {
+function TimeInput({ inputValue, onChange, label }) {
   return (
-    <TimeInputContainer>
-      <Label htmlFor={name}>{label}</Label>
-      <Time
-        type="time"
-        onChange={onChange}
-        value={value}
-        id={name}
-        name={name}
-      />
-    </TimeInputContainer>
+    <Time
+      type="time"
+      aria-label={label}
+      onChange={onChange}
+      value={inputValue}
+    />
   );
 }
 
