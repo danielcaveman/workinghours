@@ -4,10 +4,10 @@ const mongoose = restFul.mongoose;
 const employeeHoursSchema = new mongoose.Schema(
   {
     day: { type: String, required: true },
-    begin: { type: String },
-    end: { type: String },
-    lunchBegin: { type: String },
-    lunchEnd: { type: String },
+    begin: { type: String, required: [true, "Begin is required"] },
+    end: { type: String, required: [true, "End is required"] },
+    lunchBegin: { type: String, required: [true, "Lunch Begin is required"] },
+    lunchEnd: { type: String, required: [true, "Lunch End is required"] },
   },
   {
     toJSON: {

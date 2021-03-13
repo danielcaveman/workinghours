@@ -19,10 +19,18 @@ const employeeHoursApis = {
           .then((response) => {
             toastr.success("Updated");
           })
+          .catch((error) => {
+            const { errors } = error.response.data;
+            errors.map((err) => toastr.error(err));
+          })
       : axios
           .post(`http://localhost:3001/api/employeeHours`, data)
           .then((response) => {
             toastr.success("Saved");
+          })
+          .catch((error) => {
+            const { errors } = error.response.data;
+            errors.map((err) => toastr.error(err));
           });
   },
 };
