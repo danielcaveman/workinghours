@@ -57,7 +57,7 @@ function MainPage() {
       <DatePanel />
       <Table
         data={gridData}
-        deleteById={(id) => dispatch(deleteById(id))}
+        deleteById={(_id) => dispatch(deleteById(_id))}
         updateById={(data) => dispatch(updateById(data, expectedHours))}
         columns={[
           {

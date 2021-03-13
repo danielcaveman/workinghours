@@ -7,6 +7,14 @@ services:
       - ./server:/usr/app
     ports:
       - 3001:3001
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - data:/data/db
+    ports:
+      - 27107:27107
   client:
     image: react:webapp
     build: ./client
@@ -14,3 +22,6 @@ services:
       - ./client:/usr/app
     ports:
       - 3000:3000
+
+volumes:
+  data:
