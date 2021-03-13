@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 3001
 
-CMD [ "yarn", "run", "prod" ]
+CMD [ "yarn", "start" ]
