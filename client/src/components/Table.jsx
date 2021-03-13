@@ -1,7 +1,15 @@
 import React from "react";
 import MaterialTable from "material-table";
 
-function Table({ data, updateById, deleteById, columns, title, subTitle }) {
+function Table({
+  data,
+  updateById,
+  deleteById,
+  columns,
+  title,
+  subTitle,
+  isDeletable,
+}) {
   return (
     <MaterialTable
       options={{
@@ -17,6 +25,7 @@ function Table({ data, updateById, deleteById, columns, title, subTitle }) {
       data={data}
       title={`${title}: ${subTitle}`}
       editable={{
+        isDeletable: isDeletable,
         onRowUpdate: (rowData) =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -27,7 +36,7 @@ function Table({ data, updateById, deleteById, columns, title, subTitle }) {
         onRowDelete: (rowData) =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
-              if (rowData.id) deleteById(rowData.id);
+              deleteById(rowData);
               resolve();
             }, 1000);
           }),

@@ -7,9 +7,9 @@ const employeeHoursApis = {
     axios.get("http://localhost:3001/api/employeeHours").then((response) => {
       return response.data;
     }),
-  deleteById: (id) =>
+  deleteById: ({ _id }) =>
     axios
-      .delete(`http://localhost:3001/api/employeeHours/${id}`)
+      .delete(`http://localhost:3001/api/employeeHours/${_id}`)
       .then((response) => {
         toastr.success("Removed");
       }),

@@ -16,7 +16,7 @@ function DatePanel() {
   return (
     <DateContainer>
       <Typography variant="h6" gutterBottom>
-        Choose a Date: Preciso corrigir calculo de horas negativo
+        Choose a Date:
       </Typography>
       <DatePicker
         views={["year", "month"]}

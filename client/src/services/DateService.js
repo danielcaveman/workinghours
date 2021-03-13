@@ -88,16 +88,27 @@ export class DateService {
   }
 
   _millisecondsToTime(date, expectedHours) {
+    let calculatedHours = "";
     const milliseconds = date % 1000;
     date = (date - milliseconds) / 1000;
     const seconds = date % 60;
     date = (date - seconds) / 60;
-    const minutes = date % 60;
-    const hours = (date - minutes) / 60 - expectedHours;
-    const calculatedHours =
-      minutes.toString().length > 1
-        ? `${hours}:${minutes}`
-        : `${hours}:0${minutes}`;
+    let minutes = date % 60;
+    let hours = (date - minutes) / 60 - expectedHours;
+    if (hours < 0 && minutes > 0) {
+      hours = hours + 1;
+      minutes = 60 - minutes;
+      const signal = hours < 0 ? "" : "-";
+      calculatedHours =
+        minutes.toString().length > 1
+          ? `${signal}${hours}:${minutes}`
+          : `${signal}${hours}:0${minutes}`;
+    } else {
+      calculatedHours =
+        minutes.toString().length > 1
+          ? `${hours}:${minutes}`
+          : `${hours}:0${minutes}`;
+    }
     return calculatedHours;
   }
 }

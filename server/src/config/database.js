@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
-module.exports = mongoose.connect("mongodb://mongodb:27017/employeeHours", {
+const dbConn =
+  process.env.NODE_ENV === "development"
+    ? "mongodb://localhost/employeeHours"
+    : "mongodb://mongodb:27017/employeeHours";
+
+module.exports = mongoose.connect(dbConn, {
   useMongoClient: true,
 });
