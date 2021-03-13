@@ -5,7 +5,7 @@ import Menu from "../components/Menu";
 import Main from "../components/Main";
 import GlobalStyles from "../styles/global";
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   display: grid;
   grid-template-areas:
     "menu header header header header header"
@@ -20,11 +20,11 @@ function MainPage({ children }) {
   return (
     <>
       <GlobalStyles />
-      <Container>
+      <StyledContainer>
         <Header />
         <Menu />
         <Main children={children} />
-      </Container>
+      </StyledContainer>
     </>
   );
 }

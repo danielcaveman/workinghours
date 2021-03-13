@@ -5,7 +5,7 @@ import { DatePicker } from "@material-ui/pickers";
 import { Paper, Typography } from "@material-ui/core";
 import { changeDate } from "../actions/DatePanel.actions";
 
-const DateContainer = styled(Paper)`
+const StyledContainer = styled(Paper)`
   margin: 1rem 0;
   padding: 2rem;
 `;
@@ -14,7 +14,7 @@ function DatePanel() {
   const datePanel = useSelector((state) => state.datePanel);
   const dispatch = useDispatch();
   return (
-    <DateContainer>
+    <StyledContainer>
       <Typography variant="h6" gutterBottom>
         Choose a Date:
       </Typography>
@@ -26,7 +26,7 @@ function DatePanel() {
         minDate={new Date("1990-02-01")}
         maxDate={new Date("2100-02-01")}
       />
-    </DateContainer>
+    </StyledContainer>
   );
 }
 

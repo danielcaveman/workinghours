@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 
-const MenuContainer = styled.aside`
+const StyledContainer = styled.aside`
   grid-area: menu;
   background-color: #252d32;
   padding: 2rem 1rem;
@@ -46,7 +46,7 @@ const Link = styled(NavLink)`
 
 function Menu() {
   return (
-    <MenuContainer>
+    <StyledContainer>
       <Logo />
       <Nav>
         <List>
@@ -55,7 +55,7 @@ function Menu() {
           </ListItem>
         </List>
       </Nav>
-    </MenuContainer>
+    </StyledContainer>
   );
 }
 

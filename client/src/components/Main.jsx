@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const MainContainer = styled.main`
+const StyledContainer = styled.main`
   grid-area: main;
   background-color: #edf0f5;
   padding: 2rem;
@@ -9,7 +9,7 @@ const MainContainer = styled.main`
 `;
 
 function Main({ children }) {
-  return <MainContainer>{children}</MainContainer>;
+  return <StyledContainer>{children}</StyledContainer>;
 }
 
 export default Main;
