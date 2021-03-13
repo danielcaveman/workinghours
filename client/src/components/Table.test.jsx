@@ -52,5 +52,7 @@ describe("<Table />", () => {
 
     expect(screen.getAllByText("09:10")).toHaveLength(1);
     expect(screen.getAllByText("18:00")).toHaveLength(2);
+    const Title = screen.getByRole("heading", { name: /title 1/i });
+    expect(Title).toBeInTheDocument();
   });
 });
