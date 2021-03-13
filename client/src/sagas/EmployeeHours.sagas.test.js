@@ -16,8 +16,6 @@ describe("EmployeeHoursSagas", () => {
         end: "17:12",
         lunchBegin: "12:00",
         lunchEnd: "13:00",
-        total: "-1:57",
-        id: 11,
       },
     ];
     const generator = getEmployeeHours();
@@ -42,8 +40,6 @@ describe("EmployeeHoursSagas", () => {
         end: "17:12",
         lunchBegin: "12:00",
         lunchEnd: "13:00",
-        total: "-1:57",
-        id: 11,
       },
       expectedHours: 8,
     });
@@ -56,8 +52,6 @@ describe("EmployeeHoursSagas", () => {
           end: "17:12",
           lunchBegin: "12:00",
           lunchEnd: "13:00",
-          total: "-1:57",
-          id: 11,
         },
         8
       )
