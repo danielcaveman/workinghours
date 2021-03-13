@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TimeInput /> Should match snapshot 1`] = `
+<div>
+  <input
+    aria-label="Date"
+    class="sc-bdfBwQ kOyfgn"
+    type="time"
+    value=""
+  />
+</div>
+`;

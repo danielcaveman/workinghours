@@ -22,4 +22,10 @@ describe("<TimeInput />", () => {
     expect(input.value).toBe(value);
     expect(fn).toHaveBeenCalledTimes(2);
   });
+
+  it("Should match snapshot", () => {
+    const fn = jest.fn();
+    const { container } = render(<TimeInput onChange={fn} label={"Date"} />);
+    expect(container).toMatchSnapshot();
+  });
 });
