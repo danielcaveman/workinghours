@@ -1,6 +1,5 @@
 # workinghours
 
-
 ## Project Structure
 
 ```
@@ -10,8 +9,8 @@
 └── docker-compose.yml
 ```
 
-- client: React Front-end Application 
-- server: NodeJS Server/API 
+- client: React Front-end Application
+- server: NodeJS Server/API
 - docker-compose.yml
 
 ## Requirements
@@ -23,7 +22,9 @@
 
 ## Run the project
 
-- In the root folder run the command:
+- In the root folder run the commands:
+
+### `docker-compose build`
 
 ### `docker-compose up`
 
