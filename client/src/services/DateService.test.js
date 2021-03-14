@@ -285,4 +285,21 @@ describe("DateService", () => {
 
     expect(mock[0]).toMatchObject(month[0]);
   });
+
+  it("Should create data table:", () => {
+    const data = [
+      {
+        begin: "08:15",
+        day: "2021-03-01T03:00:00.000Z",
+        end: "18:15",
+        id: "604cc4bc3890e0211c0759f1",
+        lunchBegin: "12:01",
+        lunchEnd: "13:00",
+        total: "1:01",
+      },
+    ];
+    const tableData = dateService.createTableData(mock, data);
+
+    expect(tableData[0]).toMatchObject(data[0]);
+  });
 });

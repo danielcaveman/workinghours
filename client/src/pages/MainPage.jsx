@@ -21,10 +21,6 @@ function MainPage() {
   const [gridData, setGridData] = useState([]);
   const [expectedHours] = useState(8);
 
-  useEffect(() => {
-    dispatch(getAll());
-  }, [dispatch]);
-
   const editComponent = (props) => (
     <TimeInput
       label="time"
@@ -34,23 +30,16 @@ function MainPage() {
   );
 
   useEffect(() => {
-    const getTableData = () => {
-      return month.map((m) => {
-        employeeHours.data.forEach((d) => {
-          const isEqual = m.day === d.day;
-          if (isEqual) {
-            m = d;
-          }
-        });
-        return m;
-      });
-    };
-    setGridData(getTableData());
-  }, [employeeHours.data, month]);
+    dispatch(getAll());
+  }, [dispatch]);
 
   useEffect(() => {
     setMonth(dateService.generateMonth(datePanel.date));
   }, [datePanel.date]);
+
+  useEffect(() => {
+    setGridData(dateService.createTableData(month, employeeHours.data));
+  }, [employeeHours.data, month]);
 
   return (
     <Layout>

@@ -29,4 +29,16 @@ export class DateService {
     const dateUTC = moment.utc(value);
     return moment(dateUTC).format(dateFormat);
   }
+
+  createTableData(month, data) {
+    return month.map((m) => {
+      data.forEach((d) => {
+        const isEqual = m.day === d.day;
+        if (isEqual) {
+          m = d;
+        }
+      });
+      return m;
+    });
+  }
 }
