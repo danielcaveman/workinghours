@@ -1,6 +1,10 @@
 import reducer from "./EmployeeHours.reducer";
 import { ACTIONS } from "../constants/actions";
 
+const INITIAL_STATE = {
+  data: [],
+};
+
 describe("EmployeeHours Reducer", () => {
   it("Should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({ data: [] });
@@ -8,7 +12,7 @@ describe("EmployeeHours Reducer", () => {
 
   it("Should handle EMPLOYEE_HOURS_SET_ALL", () => {
     expect(
-      reducer([], {
+      reducer(INITIAL_STATE, {
         type: ACTIONS.EMPLOYEE_HOURS_SET_ALL,
         payload: [
           {

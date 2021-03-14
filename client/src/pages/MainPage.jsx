@@ -83,7 +83,10 @@ function MainPage() {
             editable: "never",
           },
         ]}
-        title={dateService.formatDate(datePanel.date, "MMMM YYYY")}
+        title={dateService.formatDate(
+          datePanel.date || new Date(),
+          "MMMM YYYY"
+        )}
         subTitle={`Expected working hours - ${8} hours`}
       />
     </Layout>

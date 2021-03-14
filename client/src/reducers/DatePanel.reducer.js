@@ -1,7 +1,7 @@
 import { ACTIONS } from "../constants/actions";
 
 const INITIAL_STATE = {
-  date: new Date(),
+  date: null,
 };
 
 function DatePanelReducer(state = INITIAL_STATE, action) {
