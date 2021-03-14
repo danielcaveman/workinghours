@@ -14,6 +14,13 @@
 - server: NodeJS Server/API 
 - docker-compose.yml
 
+## Requirements
+
+- docker: 20.10.5 (version)
+- node: 12.16.1 (version)
+- npm: 7.6.3 (version)
+- yarn: 1.22.4 (version)
+
 ## Run the project
 
 - In the root folder run the command:
