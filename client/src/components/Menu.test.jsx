@@ -11,4 +11,13 @@ describe("<Menu />", () => {
       </MemoryRouter>
     );
   });
+
+  it("Should match snapshot", () => {
+    const { container } = render(
+      <MemoryRouter>
+        <Menu />
+      </MemoryRouter>
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

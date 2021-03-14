@@ -22,4 +22,19 @@ describe("<DatePanel />", () => {
     const Text = screen.getByRole("heading", { name: /Choose a Date/i });
     expect(Text).toBeInTheDocument();
   });
+
+  it("Should match snapshot", () => {
+    const initialState = { datePanel: { date: new Date() } };
+    const mockStore = configureStore();
+    const store = mockStore(initialState);
+
+    const { container } = render(
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <Provider store={store}>
+          <DatePanel />
+        </Provider>
+      </MuiPickersUtilsProvider>
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

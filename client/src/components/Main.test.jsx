@@ -20,4 +20,13 @@ describe("<Main />", () => {
     const childrenComponent = screen.getByTestId("children-component");
     expect(childrenComponent).toBeInTheDocument();
   });
+
+  it("Should match snapshot", () => {
+    const { container } = render(
+      <Main>
+        <div data-testid="children-component"></div>
+      </Main>
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

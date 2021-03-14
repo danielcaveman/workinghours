@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DatePanel /> Should match snapshot 1`] = `
+<div>
+  <div
+    class="MuiPaper-root sc-bdfBwQ lnrRBG MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <h6
+      class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom"
+    >
+      Choose a Date:
+    </h6>
+    <div
+      class="MuiFormControl-root MuiTextField-root"
+      format="MMMM YYYY"
+    >
+      <label
+        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+        data-shrink="true"
+      >
+        Date
+      </label>
+      <div
+        class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      >
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiInput-input"
+          readonly=""
+          type="text"
+          value="March 2021"
+        />
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;

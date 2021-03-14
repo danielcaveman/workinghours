@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> Should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-fubCfw ihTred"
+  >
+    <header
+      class="sc-bdfBwQ QtUwF"
+    />
+    <aside
+      class="sc-gsTCUz gvzgmn"
+    >
+      <div
+        class="sc-dlfnbm lgzpeJ"
+      />
+      <nav
+        class="sc-hKgILt bVFLLn"
+      >
+        <ul
+          class="sc-eCssSg bdhGbw"
+        >
+          <li
+            class="sc-jSgupP"
+          >
+            <a
+              aria-current="page"
+              class="sc-gKsewC kJkXnr active"
+              href="/"
+            >
+              Main Page
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <main
+      class="sc-iBPRYJ gRKJzj"
+    />
+  </div>
+</div>
+`;

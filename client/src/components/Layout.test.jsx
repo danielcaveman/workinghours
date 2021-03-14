@@ -23,4 +23,13 @@ describe("<Layout />", () => {
     const main = screen.getByRole("main");
     expect(main).toBeInTheDocument();
   });
+
+  it("Should match snapshot", () => {
+    const { container } = render(
+      <MemoryRouter>
+        <Layout />
+      </MemoryRouter>
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

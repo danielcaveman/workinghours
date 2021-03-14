@@ -8,4 +8,9 @@ describe("<Header />", () => {
 
     expect(screen.getByRole("banner")).toBeInTheDocument();
   });
+
+  it("Should match snapshot", () => {
+    const { container } = render(<Header />);
+    expect(container).toMatchSnapshot();
+  });
 });
