@@ -17,7 +17,6 @@ function MainPage() {
   const dispatch = useDispatch();
   const employeeHours = useSelector((state) => state.employeeHours);
   const datePanel = useSelector((state) => state.datePanel);
-  const [month, setMonth] = useState(dateService.generateMonth());
   const [gridData, setGridData] = useState([]);
   const [expectedHours] = useState(8);
 
@@ -34,12 +33,11 @@ function MainPage() {
   }, [dispatch]);
 
   useEffect(() => {
-    setMonth(dateService.generateMonth(datePanel.date));
-  }, [datePanel.date]);
-
-  useEffect(() => {
-    setGridData(dateService.createTableData(month, employeeHours.data));
-  }, [employeeHours.data, month]);
+    setGridData(
+      dateService.createTableData(datePanel.date, employeeHours.data)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [employeeHours.data, datePanel.date]);
 
   return (
     <Layout>

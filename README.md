@@ -34,16 +34,20 @@
 
 ## Run React Front-end Application
 
-- In the folder "/client" run the command:
+- In the folder "/client" run the commands:
+
+### `yarn install`
 
 ### `yarn start`
 
-- To test run the command:
+- In the folder "/client" run the command:
 
 ### `yarn test`
 
 ## Run NodeJS Server/API
 
-- In the folder "/server" run the command:
+- In the folder "/server" run the commands:
+
+### `yarn install`
 
 ### `yarn run dev`
