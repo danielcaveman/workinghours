@@ -40,7 +40,7 @@
 
 ### `yarn start`
 
-- In the folder "/client" run the command:
+- In the folder "/client" run the command to test:
 
 ### `yarn test`
 
