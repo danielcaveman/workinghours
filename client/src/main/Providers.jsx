@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { applyMiddleware, compose, createStore } from "redux";
 import { Provider } from "react-redux";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -41,5 +42,9 @@ function Providers(props) {
     </MuiPickersUtilsProvider>
   );
 }
+
+Providers.propTypes = {
+  children: PropTypes.object,
+};
 
 export default Providers;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
@@ -23,10 +24,14 @@ function MainPage({ children }) {
       <StyledContainer>
         <Header />
         <Menu />
-        <Main children={children} />
+        <Main child={children} />
       </StyledContainer>
     </>
   );
 }
+
+MainPage.propTypes = {
+  children: PropTypes.array,
+};
 
 export default MainPage;

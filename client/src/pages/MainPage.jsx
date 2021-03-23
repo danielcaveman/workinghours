@@ -20,11 +20,11 @@ function MainPage() {
   const [gridData, setGridData] = useState([]);
   const [expectedHours] = useState(8);
 
-  const editComponent = (props) => (
+  const editComponent = ({ value, onChange }) => (
     <TimeInput
       label="time"
-      inputValue={props.value}
-      onChange={(e) => props.onChange(e.target.value)}
+      inputValue={value}
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 
@@ -36,7 +36,6 @@ function MainPage() {
     setGridData(
       dateService.createTableData(datePanel.date, employeeHours.data)
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [employeeHours.data, datePanel.date]);
 
   return (

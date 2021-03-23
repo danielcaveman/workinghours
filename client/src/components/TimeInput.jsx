@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Time = styled.input`
@@ -23,5 +24,11 @@ function TimeInput({ inputValue, onChange, label }) {
     />
   );
 }
+
+TimeInput.propTypes = {
+  label: PropTypes.string,
+  onChange: PropTypes.func,
+  inputValue: PropTypes.string,
+};
 
 export default TimeInput;

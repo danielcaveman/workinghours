@@ -10,11 +10,11 @@ const employeeHoursApis = {
     await http.delete(`/api/employeeHours/${_id}`);
     toastr.success("Removed");
   },
-  updateById: (data, expectedHours) => {
+  updateById: (data) => {
     return data._id
       ? http
           .put(`/api/employeeHours/${data._id}`, data)
-          .then((response) => {
+          .then(() => {
             toastr.success("Updated");
           })
           .catch((error) => {
@@ -23,7 +23,7 @@ const employeeHoursApis = {
           })
       : http
           .post(`/api/employeeHours`, data)
-          .then((response) => {
+          .then(() => {
             toastr.success("Saved");
           })
           .catch((error) => {
