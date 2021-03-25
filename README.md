@@ -22,31 +22,31 @@
 
 ## Run the project
 
-- In the root folder run the commands:
+- In the root folder run the commands
 
 ### `docker-compose build`
 
 ### `docker-compose up`
 
-- Open your browser in the host:
+- Open your browser in the host
 
 ### `http://localhost:3000/`
 
 ## Run React Front-end Application
 
-- In the folder "/client" run the commands:
+- In the folder "/client" run the commands
 
 ### `yarn install`
 
 ### `yarn start`
 
-- In the folder "/client" run the command to test:
+- In the folder "/client" run the command to test
 
 ### `yarn test`
 
 ## Run NodeJS Server/API
 
-- In the folder "/server" run the commands:
+- In the folder "/server" run the commands
 
 ### `yarn install`
 
